@@ -1,6 +1,6 @@
-import React, { FC, memo, useCallback, useMemo, useState } from 'react'
+import React, { FC, memo, useCallback, useState } from 'react'
 
-import { AppState, TodoItem } from './store'
+import { AppState } from './store'
 import { useSelector } from '../src'
 import { useApi } from './api'
 

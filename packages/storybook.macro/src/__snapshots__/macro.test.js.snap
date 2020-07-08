@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`macros advanced usage - story exports more data : advanced usage - story exports more data  1`] = `
+
+import React from 'react';
+import {title} from "../../src/macro";
+export const Story1 = ()=> "A story";
+export default {title: title, decorators: [1,2,3]};
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+import React from "react";
+export const Story1 = () => "A story";
+export default {
+  title: "[generated title]",
+  decorators: [1, 2, 3],
+};
+
+
+`;
+
+exports[`macros basic usage - read as variable: basic usage - read as variable 1`] = `
+
+import {title} from "../../src/macro";
+const actualTitle = title;
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+const actualTitle = "[generated title]";
+
+
+`;
+
+exports[`macros basic usage - title as object value : basic usage - title as object value  1`] = `
+
+import {title} from "../../src/macro";
+export default {title: title};
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+export default {
+  title: "[generated title]",
+};
+
+
+`;
+
+exports[`macros basic usage - title as shortened object key-value form : basic usage - title as shortened object key-value form  1`] = `
+
+import {title} from "../../src/macro";
+export default {title};
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+export default {
+  title: "[generated title]",
+};
+
+
+`;
+
+exports[`macros no usage 1: no usage 1 1`] = `
+
+import {title} from "../../src/macro";
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+
+
+`;
+
+exports[`macros no usage 2: no usage 2 1`] = `
+
+import anythingFooBar from "../../src/macro";
+
+      ↓ ↓ ↓ ↓ ↓ ↓
+
+
+
+`;

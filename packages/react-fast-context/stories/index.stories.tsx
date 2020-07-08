@@ -1,7 +1,7 @@
 import { title } from '@passionware/storybook.macro'
 import { useCreateStore } from '../src/useCreateStore'
 import React, { useMemo } from 'react'
-import { StoreContext } from '../src'
+import { Store, StoreContext } from '../src'
 import { defaultState } from './store'
 import { App } from './App'
 import { ApiContext, TodoApi } from './api'
@@ -25,7 +25,7 @@ export const Default = () => {
   )
 
   return (
-    <StoreContext.Provider value={store}>
+    <StoreContext.Provider value={store as Store<unknown>}>
       <ApiContext.Provider value={api}>
         <App />
       </ApiContext.Provider>

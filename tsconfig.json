@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
-    "outDir": "packages/react-fast-context/dist",
     "module": "esnext",
-    "lib": [
-      "dom",
-      "esnext"
-    ],
+    "lib": ["dom", "esnext"],
     "moduleResolution": "node",
     "jsx": "react",
     "baseUrl": ".",
@@ -29,12 +25,5 @@
     "isolatedModules": true,
     "noEmit": true
   },
-  "include": [
-    "packages/react-fast-context/src"
-  ],
-  "exclude": [
-    "packages/react-fast-context/node_modules",
-    "dist",
-    "example"
-  ]
+  "exclude": ["node_modules", "**/node_modules", "dist"]
 }
