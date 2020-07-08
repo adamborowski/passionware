@@ -1,13 +1,17 @@
 {
   "name": "passionware",
   "version": "1.0.0",
-  "description": "Monorepo for passionware libraries",
+  "description": "Monorepo for Passionware libraries",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/adamborowski/passionware.git"
@@ -27,6 +31,7 @@
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "@types/jest": "^26.0.4",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.1.0",
     "cross-env": "^7.0.2",

@@ -24,12 +24,14 @@
     "deploy": "gh-pages -d example/build"
   },
   "peerDependencies": {
-    "react": "^16.0.0"
+    "react": "^16.0.0",
+    "immer": "^7.0.5"
   },
   "devDependencies": {
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-scripts": "^3.4.1"
+    "react-scripts": "^3.4.1",
+    "@passionware/storybook.macro": "^1.0.0"
   },
   "files": [
     "dist"

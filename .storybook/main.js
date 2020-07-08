@@ -1,7 +1,7 @@
 const glob = require('fast-glob')
 
 module.exports = {
-  stories: glob([`../packages/*/src/**/*.stories.tsx`], { cwd: __dirname }),
+  stories: glob([`../packages/*/(src|stories)/**/*.stories.tsx`], { cwd: __dirname }),
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-actions',
