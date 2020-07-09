@@ -47,7 +47,7 @@ const MyApp = () => {
 ### Accessing the store
 
 You can efficiently bind any component to any part of state by using selector functions,
-exactly the same as you do it in `redux`. `useSelector(selector)` hook will return fresh result of `selector`.
+exactly the same as you do it in `react-redux`. `useSelector(selector)` hook will return fresh result of `selector`.
 It also triggers re-render of the component every time store is updated and selector value changes.
 
 ```jsx
@@ -116,6 +116,45 @@ const MyButton = () => {
   return <button onClick={increment} />;
 };
 ```
+
+## API
+
+### createStore
+
+It accepts initial store state and returns instance of a new store.
+
+- `store.update()` updates the state based on passed `immer`'s producer. You can read more about producers [here](https://immerjs.github.io/immer/docs/produce).
+
+```jsx
+store.update(draftState => {
+  /* you can modify draftState here */
+});
+```
+
+- `store.getState()` returns current state value. You don't need to use it directly.
+- `store.subscribe()` is used by `useSelector` to listen store changes. You don't need to use it directly.
+
+### useCreateStore
+
+This hook creates the store at first component render and keeps the reference for future renders. This is just a
+convenient helper to not use `createStore` in a component.
+
+### useSelector
+
+```javascript
+useCallback(selector, compareFunction);
+```
+
+This hook returns a selector result performed on always recent store value.
+You have to remember not to re-create the selection function every render. You should create selector outside component
+or use `useCallback` if a selector depends on component state/props
+
+There is an optional `compareFunction` if your selector computes derived data causing new value not being referentially equal.
+You can read more about this in [react-redux](https://react-redux.js.org/api/hooks#equality-comparisons-and-updates) docs.
+
+### useStore
+
+A hook to return store from a context. You don't need to use it directtly.
 
 ## License
 
