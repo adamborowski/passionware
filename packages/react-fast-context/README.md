@@ -147,7 +147,7 @@ useCallback(selector, compareFunction);
 
 This hook returns a selector result performed on always recent store value.
 You have to remember not to re-create the selection function every render. You should create selector outside component
-or use `useCallback` if a selector depends on component state/props
+or use `useCallback` if a selector depends on component state / props.
 
 There is an optional `compareFunction` if your selector computes derived data causing new value not being referentially equal.
 You can read more about this in [react-redux](https://react-redux.js.org/api/hooks#equality-comparisons-and-updates) docs.
