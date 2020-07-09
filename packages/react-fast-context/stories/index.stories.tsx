@@ -2,9 +2,9 @@ import { title } from '@passionware/storybook.macro';
 import { useCreateStore } from '../src/useCreateStore';
 import React, { useCallback, useMemo, useRef } from 'react';
 import { Store, StoreContext } from '../src';
-import { defaultState } from './store';
-import { App } from './App';
-import { ApiContext, TodoApi } from './api';
+import { defaultState } from '../src/__test__/store';
+import { App } from '../src/__test__/App';
+import { ApiContext, TodoApi } from '../src/__test__/api';
 
 export default { title };
 

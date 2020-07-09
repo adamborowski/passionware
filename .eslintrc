@@ -30,6 +30,7 @@
   },
   "rules": {
     "space-before-function-paren": 0,
+    "no-void": "off",
     "react/prop-types": 0,
     "react/jsx-handler-names": 0,
     "react/jsx-fragments": 0,

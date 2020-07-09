@@ -1,7 +1,7 @@
 import React, { FC, memo, useCallback, useState } from 'react';
 
 import { AppState } from './store';
-import { useSelector } from '../src';
+import { useSelector } from '../index';
 import { useApi } from './api';
 
 const selectTodos = (state: AppState) => state.todos;
@@ -28,8 +28,12 @@ export const App: FC = () => {
   return (
     <>
       <Counter />
-      <p>{showCompleted ? 'showing completed only' : 'showing all'}</p>
-      <button onClick={() => setShowCompleted(!showCompleted)}>{showCompleted ? 'show all' : 'show completed'}</button>
+      <p id="info" data-info={showCompleted ? 'completed' : 'all'}>
+        {showCompleted ? 'showing completed only' : 'showing all'}
+      </p>
+      <button id="filter-button" onClick={() => setShowCompleted(!showCompleted)}>
+        {showCompleted ? 'show all' : 'show completed'}
+      </button>
       <ul>
         {todos.map(id => (
           <Item key={id} id={id} />
@@ -48,7 +52,11 @@ export const Counter = memo(() => {
 
   updated('Counter');
 
-  return <button onClick={increment}>Counter: {counter}</button>;
+  return (
+    <button id="counter-button" data-counter={counter} onClick={increment}>
+      Counter: {counter}
+    </button>
+  );
 });
 
 export const Item: FC<{ id: number }> = memo(({ id }) => {
@@ -64,7 +72,7 @@ export const Item: FC<{ id: number }> = memo(({ id }) => {
   }
 
   return (
-    <li style={{ opacity: item.completed ? 0.4 : 1 }}>
+    <li id={`item-${id}`} data-type="item" data-completed={item.completed} data-id={item.id} style={{ opacity: item.completed ? 0.4 : 1 }}>
       {item.name}
       <button onClick={() => markCompleted(item.id, !item.completed)}>{item.completed ? 'uncomplete' : 'complete'}</button>
     </li>
