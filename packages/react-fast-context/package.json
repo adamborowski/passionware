@@ -1,5 +1,5 @@
 {
-  "name": "react-fast-context",
+  "name": "@pasionware/react-fast-context",
   "version": "1.0.0",
   "description": "Minimal, efficient and context based state management for React",
   "author": "adamborowski",
@@ -7,7 +7,7 @@
   "repository": "adamborowski/react-fast-context",
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
-  "source": "src/index.tsx",
+  "source": "src/index.ts",
   "engines": {
     "node": ">=10"
   },
