@@ -137,7 +137,7 @@ store.update(draftState => {
 ### useCreateStore
 
 This hook creates the store at first component render and keeps the reference for future renders. This is just a
-convenient helper to not use `createStore` in a component.
+convenient helper to not use `createStore` directly in a component.
 
 ### useSelector
 
