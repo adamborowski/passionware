@@ -1,6 +1,6 @@
 import { title } from '@passionware/storybook.macro';
 import { useCreateStore } from '../src/useCreateStore';
-import React, { useMemo } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { Store, StoreContext } from '../src';
 import { defaultState } from './store';
 import { App } from './App';
@@ -8,8 +8,31 @@ import { ApiContext, TodoApi } from './api';
 
 export default { title };
 
+const useActions = () => {
+  const firstRenderRef = useRef(true);
+  const resultRef = useRef<HTMLElement>(null);
+
+  const addAction = useCallback((action: string) => {
+    if (firstRenderRef.current) {
+      firstRenderRef.current = false;
+      if (resultRef.current) {
+        resultRef.current.innerHTML = '';
+      }
+      setTimeout(() => {
+        firstRenderRef.current = true;
+      }, 0);
+    }
+    const element = document.createElement('div');
+    element.textContent = action;
+    resultRef.current?.appendChild(element);
+  }, []);
+  return { resultRef, addAction };
+};
+
 export const Default = () => {
+  const { addAction, resultRef } = useActions();
   const store = useCreateStore(defaultState);
+
   const api = useMemo<TodoApi>(
     () => ({
       markCompleted: (id, completed) =>
@@ -20,6 +43,7 @@ export const Default = () => {
         store?.update(state => {
           state.counter++;
         }),
+      updated: addAction,
     }),
     [store]
   );
@@ -27,6 +51,12 @@ export const Default = () => {
   return (
     <StoreContext.Provider value={store as Store<unknown>}>
       <ApiContext.Provider value={api}>
+        <div style={{ float: 'right' }}>
+          Previously updated components:
+          <pre>
+            <code ref={resultRef} />
+          </pre>
+        </div>
         <App />
       </ApiContext.Provider>
     </StoreContext.Provider>

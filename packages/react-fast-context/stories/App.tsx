@@ -21,12 +21,14 @@ export const App: FC = () => {
   );
   const todos = useSelector(selectCurrentTodos, arrayEqual);
 
-  console.log('updated');
+  const { updated } = useApi();
+
+  updated('App');
 
   return (
     <>
       <Counter />
-      {showCompleted ? 'showing completed only' : 'showing all'}
+      <p>{showCompleted ? 'showing completed only' : 'showing all'}</p>
       <button onClick={() => setShowCompleted(!showCompleted)}>{showCompleted ? 'show all' : 'show completed'}</button>
       <ul>
         {todos.map(id => (
@@ -42,16 +44,20 @@ export const Counter = memo(() => {
   const { increment } = useApi();
   const counter = useSelector(selectCounter);
 
-  console.log('counter render');
+  const { updated } = useApi();
+
+  updated('Counter');
 
   return <button onClick={increment}>Counter: {counter}</button>;
 });
 
-export const Item: FC<{ id: number }> = ({ id }) => {
+export const Item: FC<{ id: number }> = memo(({ id }) => {
   const { markCompleted } = useApi();
   const selectCurrentTodo = useCallback((state: AppState) => selectTodo(state, id), [id]);
   const item = useSelector(selectCurrentTodo);
-  console.log(`Item ${id} render`);
+  const { updated } = useApi();
+
+  updated(`Item(${id})`);
 
   if (!item) {
     throw new Error(`Item with id ${id} not found.`);
@@ -63,4 +69,4 @@ export const Item: FC<{ id: number }> = ({ id }) => {
       <button onClick={() => markCompleted(item.id, !item.completed)}>{item.completed ? 'uncomplete' : 'complete'}</button>
     </li>
   );
-};
+});
