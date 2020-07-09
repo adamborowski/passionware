@@ -4,7 +4,11 @@
   "description": "Minimal, efficient and context based state management for React",
   "author": "adamborowski",
   "license": "MIT",
-  "repository": "adamborowski/react-fast-context",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/adamborowski/passionware",
+    "directory": "packages/react-fast-context"
+  },
   "main": "dist/index.js",
   "module": "dist/index.modern.js",
   "source": "src/index.ts",
