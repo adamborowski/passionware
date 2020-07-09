@@ -1,17 +1,20 @@
 import { useLayoutEffect, useReducer, useRef } from 'react';
 import { useStore } from './useStore';
 
-type Comparator = <T>(a: T, b: T) => boolean;
-const strictEqual: Comparator = <T>(a: T, b: T) => a === b;
+type Comparator<T> = (a: T, b: T) => boolean;
+const strictEqual: Comparator<unknown> = (a, b) => a === b;
 
 type Selector<State, SelectedState> = (state: State) => SelectedState;
-export const useSelector = <State, SelectedState>(selector: Selector<State, SelectedState>, comparator: Comparator = strictEqual) => {
+export const useSelector = <State, SelectedState>(
+  selector: Selector<State, SelectedState>,
+  comparator: Comparator<SelectedState> = strictEqual
+): SelectedState => {
   const [, forceRender] = useReducer((s: number) => s + 1, 0);
   const store = useStore<State>();
 
   const latestValueRef = useRef<SelectedState>();
   const latestSelectorRef = useRef<Selector<State, SelectedState>>();
-  const latestComparatorRef = useRef<Comparator>();
+  const latestComparatorRef = useRef<Comparator<SelectedState>>();
 
   latestComparatorRef.current = comparator;
 
@@ -23,7 +26,11 @@ export const useSelector = <State, SelectedState>(selector: Selector<State, Sele
   useLayoutEffect(() => {
     const unsubscribe = store.subscribe(originalState => {
       const selectedState = latestSelectorRef.current?.(originalState);
-      if (!latestComparatorRef.current!(latestValueRef.current, selectedState)) {
+      const latestValue = latestValueRef.current;
+      if (
+        (latestValue === undefined) !== (selectedState === undefined) ||
+        (latestValue !== undefined && selectedState !== undefined && !latestComparatorRef.current!(latestValue, selectedState))
+      ) {
         latestValueRef.current = selectedState;
         forceRender();
       }
@@ -32,5 +39,5 @@ export const useSelector = <State, SelectedState>(selector: Selector<State, Sele
     return () => unsubscribe();
   }, [comparator, forceRender, store]);
 
-  return latestValueRef.current;
+  return latestValueRef.current!;
 };

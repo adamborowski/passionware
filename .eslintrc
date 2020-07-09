@@ -6,7 +6,10 @@
     "plugin:prettier/recommended",
     "prettier/standard",
     "prettier/react",
-    "plugin:@typescript-eslint/eslint-recommended"
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
+    "prettier/@typescript-eslint"
   ],
   "env": {
     "node": true,
@@ -17,7 +20,8 @@
     "ecmaFeatures": {
       "legacyDecorators": true,
       "jsx": true
-    }
+    },
+    "project": ["./**/tsconfig.json"]
   },
   "settings": {
     "react": {
@@ -30,6 +34,38 @@
     "react/jsx-handler-names": 0,
     "react/jsx-fragments": 0,
     "react/no-unused-prop-types": 0,
-    "import/export": 0
+    "import/export": 0,
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "no-unused-expressions": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/consistent-type-definitions": ["error", "interface"],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "format": ["camelCase", "PascalCase", "UPPER_CASE"],
+        "leadingUnderscore": "forbid",
+        "selector": "variable",
+        "trailingUnderscore": "forbid"
+      },
+      {
+        "format": ["PascalCase"],
+        "selector": "typeLike"
+      },
+      {
+        "custom": { "match": false, "regex": "/^I[A-Z]./" },
+        "format": ["StrictPascalCase"],
+        "selector": "interface"
+      }
+    ],
+    "@typescript-eslint/no-inferrable-types": "error",
+    "@typescript-eslint/no-unused-expressions": "error",
+    "@typescript-eslint/prefer-optional-chain": "error",
+    "react/boolean-prop-naming": "error",
+    "react/destructuring-assignment": "error",
+    "react/jsx-no-bind": ["error", { "allowArrowFunctions": true }],
+    "react/no-deprecated": "error",
+    "react/no-string-refs": "error",
+    "react/no-this-in-sfc": "error",
+    "react/prefer-stateless-function": "error"
   }
 }

@@ -53,6 +53,10 @@ export const Item: FC<{ id: number }> = ({ id }) => {
   const item = useSelector(selectCurrentTodo);
   console.log(`Item ${id} render`);
 
+  if (!item) {
+    throw new Error(`Item with id ${id} not found.`);
+  }
+
   return (
     <li style={{ opacity: item.completed ? 0.4 : 1 }}>
       {item.name}
