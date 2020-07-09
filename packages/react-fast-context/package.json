@@ -1,6 +1,6 @@
 {
   "name": "@passionware/react-fast-context",
-  "version": "1.0.1-rc1",
+  "version": "1.0.1-rc2",
   "description": "Minimal, efficient and context based state management for React",
   "author": "adamborowski",
   "license": "MIT",
