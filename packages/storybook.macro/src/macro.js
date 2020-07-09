@@ -17,12 +17,5 @@ function generateTitle({ state, babel }) {
   const packageJson = packageFinder.next();
   const rootJson = packageFinder.next();
 
-  return babel.types.stringLiteral(
-    extractStoryPath(
-      rootJson.filename,
-      packageJson.filename,
-      fileName,
-      packageJson.value.name
-    )
-  );
+  return babel.types.stringLiteral(extractStoryPath(rootJson.filename, packageJson.filename, fileName, packageJson.value.name));
 }

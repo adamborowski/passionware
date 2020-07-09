@@ -13,8 +13,7 @@ pluginTester({
   babelOptions: {
     filename: path.join(__dirname, '/deep/AwesomeComponent.stories.js'),
   },
-  formatResult: result =>
-    prettier.format(result, { trailingComma: 'es5', parser: 'babel' }),
+  formatResult: result => prettier.format(result, { trailingComma: 'es5', parser: 'babel' }),
   tests: {
     'no usage 1': 'import {title} from "../../src/macro";',
     'no usage 2': 'import anythingFooBar from "../../src/macro";',

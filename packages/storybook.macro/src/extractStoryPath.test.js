@@ -23,14 +23,9 @@ describe.each`
     ({ packageJsonDirectory, fileRelativePath, expectedStoryTitle }) => {
       const filePath = path.resolve(packageJsonDirectory, fileRelativePath);
 
-      expect(
-        extractStoryPath(
-          '/passionware/package.json',
-          packageJsonDirectory + '/package.json',
-          filePath,
-          '@passionware/test-package'
-        )
-      ).toBe(expectedStoryTitle);
+      expect(extractStoryPath('/passionware/package.json', packageJsonDirectory + '/package.json', filePath, '@passionware/test-package')).toBe(
+        expectedStoryTitle
+      );
     }
   );
 });
