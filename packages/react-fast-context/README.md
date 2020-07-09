@@ -139,6 +139,17 @@ store.update(draftState => {
 This hook creates the store at first component render and keeps the reference for future renders. This is just a
 convenient helper to not use `createStore` directly in a component.
 
+If the component is updated and the hook receives different state as an argument, the store will be automatically updated with that value.
+This is very useful when you don't want imperatively update the state but rather build the state in a declarative way, deriving other state.
+
+```javascript
+import { useCreateStore } from '@passionware/react-fast-context';
+
+const MyApp = () => {
+  const store = useCreateStore(currentState);
+};
+```
+
 ### useSelector
 
 ```javascript
