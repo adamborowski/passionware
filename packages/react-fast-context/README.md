@@ -6,7 +6,7 @@
 
 This library is a small addition to react context state management.
 The aim of `react-fast-context` if to expose simple API that is similar to just `useState()` and `useContext()`
-but keeping the performance of context consumers.
+but keeping the performance of context consumers at the same level as `react-redux` does.
 
 `react-fast-context` is like `react-redux` but without `redux`.
 
