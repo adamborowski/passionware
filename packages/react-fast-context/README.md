@@ -1,8 +1,8 @@
-# react-fast-context
+# @passionware/react-fast-context
 
 > Minimal, efficient and context based state management for React
 
-[![NPM](https://img.shields.io/npm/v/react-fast-context.svg)](https://www.npmjs.com/package/react-fast-context) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
+[![NPM](https://img.shields.io/npm/v/@passionware/react-fast-context.svg)](https://www.npmjs.com/package/react-fast-context) [![JavaScript Style Guide](https://img.shields.io/badge/code_style-standard-brightgreen.svg)](https://standardjs.com)
 
 This library is a small addition to react context state management.
 The aim of `react-fast-context` if to expose simple API that is similar to just `useState()` and `useContext()`
