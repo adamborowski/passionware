@@ -119,9 +119,9 @@ const MyButton = () => {
 ### Declarative updates
 
 If you want to update `redux` state, you have to imperatively dispatch an action.
-It is also possible to do it imperatively using `store.update()` or `store.replace()`.
+It is also possible to do it imperatively in `react-fast-conetxt` using `store.update()` or `store.replace()`.
 However, if you worked with just react context before, you might want to do it declaratively.
-To do so, you just need to pass up-to-date state to `useCreaetStore()` hook.
+To do so, you just need to pass up-to-date state to `useCreateStore()` hook.
 
 Thanks to that you can accept state portions from component props or hooks and send them
 into application context to be consumed effectively.
@@ -192,7 +192,7 @@ const MyApp = () => {
 ### useSelector
 
 ```javascript
-useCallback(selector, compareFunction);
+useSelector(selector, compareFunction);
 ```
 
 This hook returns a selector result performed on always recent store value.
