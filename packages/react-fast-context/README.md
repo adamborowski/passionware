@@ -100,7 +100,6 @@ const MyApp = () => {
         store?.update(state => {
           state.counter++;
         }),
-      updated: addAction,
     }),
     [store]
   );
