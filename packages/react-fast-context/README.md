@@ -66,7 +66,7 @@ const TodoViewer = ({ id }) => {
 ### Updating the state
 
 `react-fast-context` isn't opinionated about how to perform modifications.
-You can update the store using `store.update()` function that will effectively update all necessary components.
+You can update the store using `store.update()` or `store.replace()` function that will effectively update all necessary components.
 
 `update()` uses `immer` library to perform immutable operation on a state.
 
@@ -117,6 +117,45 @@ const MyButton = () => {
 };
 ```
 
+### Declarative updates
+
+If you want to update `redux` state, you have to imperatively dispatch an action.
+It is also possible to do it imperatively using `store.update()` or `store.replace()`.
+However, if you worked with just react context before, you might want to do it declaratively.
+To do so, you just need to pass up-to-date state to `useCreaetStore()` hook.
+
+Thanks to that you can accept state portions from component props or hooks and send them
+into application context to be consumed effectively.
+
+```jsx
+import { StoreContext, useCreateStore } from '@passionware/react-fast-context';
+import React, { useMemo, memo } from 'react';
+import { usePageRouteId, usePictures, useUserSession, ApiProvider } from './misc';
+
+const MyAppConnected = memo(() => <div>...</div>);
+
+const MyApp = () => {
+  const [route, setRoute] = usePageRouteId();
+  const { userSession, login } = useUserSession();
+  const picturesState = usePictures(userSession.username);
+  const globalState = useMemo(() => ({ route, userSession, picturesState }), [route, userSession, picturesState]);
+
+  const store = useCreateStore(globalState);
+
+  return (
+    <StoreContext.Provider value={store}>
+      <ApiProvider login={login} setRoute={setRoute}>
+        <MyAppConnected />
+      </ApiProvider>
+    </StoreContext.Provider>
+  );
+};
+```
+
+Please note that updating the state in such way causes a lot of re-renders of main component.
+You need to use `React.memo` on its children in order to block this re-rendering.
+Nested components that subscribe to store will re-render only when selected value changes.
+
 ## API
 
 ### createStore
@@ -131,6 +170,7 @@ store.update(draftState => {
 });
 ```
 
+- `store.replace()` works similar to `update` but it just replaces state with new value
 - `store.getState()` returns current state value. You don't need to use it directly.
 - `store.subscribe()` is used by `useSelector` to listen store changes. You don't need to use it directly.
 

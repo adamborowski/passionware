@@ -9,7 +9,7 @@ export const useCreateStore = <T>(state: T) => {
     store.current = createStore(state);
   } else {
     if (store.current.getState() !== state) {
-      store.current.update(() => state);
+      store.current.replace(state);
     }
   }
   return store.current;

@@ -19,7 +19,12 @@ export const createStore: <T>(initialState: T) => Store<T> = <T>(initialState: T
     subscribers.forEach(subscriber => subscriber(state));
   };
 
+  const replace = (newState: T) => {
+    state = newState;
+    subscribers.forEach(subscriber => subscriber(state));
+  };
+
   const getState = () => state;
 
-  return { subscribe, update, getState };
+  return { subscribe, update, getState, replace };
 };

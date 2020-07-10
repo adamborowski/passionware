@@ -1,10 +1,14 @@
 import { useLayoutEffect, useReducer, useRef } from 'react';
 import { useStore } from './useStore';
 
-type Comparator<T> = (a: T, b: T) => boolean;
+export type Comparator<T> = (a: T, b: T) => boolean;
 const strictEqual: Comparator<unknown> = (a, b) => a === b;
 
-type Selector<State, SelectedState> = (state: State) => SelectedState;
+export type Selector<State, SelectedState> = (state: State) => SelectedState;
+
+// todo document
+export const createUseSelector = <T, S>(selector: (state: S) => T, comparator?: Comparator<T>) => () => useSelector(selector, comparator);
+
 export const useSelector = <State, SelectedState>(
   selector: Selector<State, SelectedState>,
   comparator: Comparator<SelectedState> = strictEqual
