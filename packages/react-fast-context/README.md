@@ -132,7 +132,7 @@ const AddTodoButton = () => {
 
 It accepts initial store state and returns instance of a new store.
 
-- `store.replace()` (internal) works similar to `update` but it just replaces state with new value
+- `store.replace()` (internal) replaces state with new one and notifies all subscribed components. You don't need to use it directly.
 - `store.getState()` (internal) returns current state value. You don't need to use it directly.
 - `store.subscribe()` (internal) is used by `useSelector` to listen store changes. You don't need to use it directly.
 
