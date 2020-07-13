@@ -32,7 +32,7 @@ import { useMatch } from '@reach/router';
 
 const MyApp = () => {
   const [todos, setTodos] = useState([]);
-  const [counter, setCounter] = useState();
+  const [counter, setCounter] = useState(0);
   const selectedTab = useMatch('/:tab').tab;
 
   const store = useStore({ todos, counter, selectedTab });
