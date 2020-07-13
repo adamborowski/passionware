@@ -5,6 +5,7 @@ import { Store, StoreContext } from '../src';
 import { defaultState } from '../src/__test__/store';
 import { App } from '../src/__test__/App';
 import { ApiContext, TodoApi } from '../src/__test__/api';
+import produce from 'immer';
 
 export default { title };
 
@@ -36,13 +37,17 @@ export const Default = () => {
   const api = useMemo<TodoApi>(
     () => ({
       markCompleted: (id, completed) =>
-        store.update(state => {
-          state.todos.find(todo => todo.id === id)!.completed = completed;
-        }),
+        store.replace(
+          produce(store.getState(), state => {
+            state.todos.find(todo => todo.id === id)!.completed = completed;
+          })
+        ),
       increment: () =>
-        store?.update(state => {
-          state.counter++;
-        }),
+        store?.replace(
+          produce(store.getState(), state => {
+            state.counter++;
+          })
+        ),
       updated: addAction,
     }),
     [store]

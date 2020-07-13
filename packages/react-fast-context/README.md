@@ -132,14 +132,6 @@ const AddTodoButton = () => {
 
 It accepts initial store state and returns instance of a new store.
 
-- `store.update()` (internal) updates the state based on passed `immer`'s producer. You can read more about producers [here](https://immerjs.github.io/immer/docs/produce).
-
-```jsx
-store.update(draftState => {
-  /* you can modify draftState here */
-});
-```
-
 - `store.replace()` (internal) works similar to `update` but it just replaces state with new value
 - `store.getState()` (internal) returns current state value. You don't need to use it directly.
 - `store.subscribe()` (internal) is used by `useSelector` to listen store changes. You don't need to use it directly.

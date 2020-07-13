@@ -5,6 +5,7 @@
 
 import { defaultState } from './__test__/store';
 import React, { ReactElement } from 'react';
+import produce from 'immer';
 import { ApiContext, TodoApi } from './__test__/api';
 
 import TestRenderer, { act } from 'react-test-renderer';
@@ -163,13 +164,17 @@ const createStoreWithApi = () => {
 
   const api: TodoApi = {
     markCompleted: (id, completed) =>
-      store.update(state => {
-        state.todos.find(todo => todo.id === id)!.completed = completed;
-      }),
+      store.replace(
+        produce(store.getState(), state => {
+          state.todos.find(todo => todo.id === id)!.completed = completed;
+        })
+      ),
     increment: () =>
-      store?.update(state => {
-        state.counter++;
-      }),
+      store?.replace(
+        produce(store.getState(), state => {
+          state.counter++;
+        })
+      ),
     updated: id => updates.push(id),
   };
 
