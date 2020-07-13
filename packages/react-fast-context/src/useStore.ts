@@ -1,11 +1,16 @@
-import { useContext } from 'react';
-import { StoreContext } from './StoreContext';
+import { useRef } from 'react';
+import { createStore } from './createStore';
 import { Store } from './types';
 
-export const useStore = <T>(): Store<T> => {
-  const store = useContext(StoreContext);
-  if (!store) {
-    throw new Error('You need to provide store via context in order to use it');
+// todo add unit test to check if useCreateStore re-rendered updates the store
+export const useStore = <T>(state: T) => {
+  const store = useRef<Store<T>>();
+  if (!store.current) {
+    store.current = createStore(state);
+  } else {
+    if (store.current.getState() !== state) {
+      store.current.replace(state);
+    }
   }
-  return store as Store<T>;
+  return store.current;
 };

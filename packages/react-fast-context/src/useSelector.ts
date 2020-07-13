@@ -1,5 +1,5 @@
 import { useLayoutEffect, useReducer, useRef } from 'react';
-import { useStore } from './useStore';
+import { useStoreContext } from './useStoreContext';
 
 export type Comparator<T> = (a: T, b: T) => boolean;
 const strictEqual: Comparator<unknown> = (a, b) => a === b;
@@ -14,7 +14,7 @@ export const useSelector = <State, SelectedState>(
   comparator: Comparator<SelectedState> = strictEqual
 ): SelectedState => {
   const [, forceRender] = useReducer((s: number) => s + 1, 0);
-  const store = useStore<State>();
+  const store = useStoreContext<State>();
 
   const latestValueRef = useRef<SelectedState>();
   const latestSelectorRef = useRef<Selector<State, SelectedState>>();

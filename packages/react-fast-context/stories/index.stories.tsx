@@ -1,5 +1,5 @@
 import { title } from '@passionware/storybook.macro';
-import { useCreateStore } from '../src/useCreateStore';
+import { useStore } from '../src/useStore';
 import React, { useCallback, useMemo, useRef } from 'react';
 import { Store, StoreContext } from '../src';
 import { defaultState } from '../src/__test__/store';
@@ -31,7 +31,7 @@ const useActions = () => {
 
 export const Default = () => {
   const { addAction, resultRef } = useActions();
-  const store = useCreateStore(defaultState);
+  const store = useStore(defaultState);
 
   const api = useMemo<TodoApi>(
     () => ({
