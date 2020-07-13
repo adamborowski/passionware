@@ -95,7 +95,7 @@ import { ApiContext } from './api';
 
 const MyApp = () => {
   const [todos, setTodos] = useState([]);
-  const [counter, setCounter] = useState();
+  const [counter, setCounter] = useState(0);
   const selectedTab = useMatch('/:tab').tab;
   const location = useLocation();
 
